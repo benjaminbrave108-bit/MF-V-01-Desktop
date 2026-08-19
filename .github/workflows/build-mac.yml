@@ -1,0 +1,29 @@
+name: Build macOS app
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  build-mac:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build macOS app (unsigned)
+        run: npm run desktop:dist:mac
+
+      - name: Upload macOS build
+        uses: actions/upload-artifact@v4
+        with:
+          name: MF-V-01-macOS
+          path: |
+            release/*.dmg
+            release/*.zip
+          if-no-files-found: error

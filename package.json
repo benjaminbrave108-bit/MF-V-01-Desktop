@@ -14,7 +14,8 @@
     "validate:artifact": "bash scripts/validate-artifact.sh",
     "lint": "bash scripts/sites-env.sh -- eslint . --ignore-pattern dist --ignore-pattern .next",
     "db:generate": "bash scripts/sites-env.sh -- drizzle-kit generate",
-    "desktop:dist": "npm run build && electron-builder --win nsis --x64"
+    "desktop:dist": "npm run build && electron-builder --win nsis --x64",
+    "desktop:dist:mac": "npm run build && electron-builder --mac --x64 --arm64"
   },
   "dependencies": {
     "drizzle-orm": "0.45.2",
@@ -67,6 +68,17 @@
       ],
       "icon": "public/kb-logo.png",
       "signAndEditExecutable": false
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "icon": "public/kb-logo.png",
+      "category": "public.app-category.finance",
+      "identity": null,
+      "hardenedRuntime": false,
+      "gatekeeperAssess": false
     },
     "nsis": {
       "oneClick": false,

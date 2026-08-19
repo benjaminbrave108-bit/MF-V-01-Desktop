@@ -75,6 +75,7 @@
         "zip"
       ],
       "icon": "public/kb-logo.png",
+      "artifactName": "MF-V-01-Setup-${version}-${arch}.${ext}",
       "category": "public.app-category.finance",
       "identity": null,
       "hardenedRuntime": false,
